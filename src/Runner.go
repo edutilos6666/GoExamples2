@@ -9,10 +9,41 @@ func main() {
 	//test_OperatorsExample()
 	//test_DecisionMakingExample()
 	//test_LoopExample()
-	test_FunctionExample()
+	//test_FunctionExample()
+	//test_StringExample()
+	//test_ArrayExample()
+	//test_PointerExample()
+	test_StructExample()
 }
 
 
+func test_StructExample() {
+	var runner = StructExample{}
+	//runner.testPerson()
+	runner.testPersonDAO()
+}
+
+func test_PointerExample() {
+	var runner = PointerExample{}
+	//runner.example1()
+	//runner.example2()
+	//runner.example3()
+	runner.example4()
+}
+
+
+func test_ArrayExample() {
+	var runner = ArrayExample{}
+	//runner.example1()
+	//runner.example2()
+	runner.example3()
+}
+
+
+func test_StringExample() {
+	var runner = StringExample{}
+	runner.example1()
+}
 
 func test_FunctionExample() {
 	var runner = FunctionExample{}
