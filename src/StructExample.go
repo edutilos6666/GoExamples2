@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"container/list"
+	"math"
 )
 
 
@@ -147,3 +148,79 @@ func (runner *StructExample) testPersonDAO()  {
 
 
 }
+
+
+
+type ComplexNumber struct  {
+	re float64
+	im float64
+}
+
+
+func (self *ComplexNumber) add(other ComplexNumber) ComplexNumber {
+	var res = ComplexNumber{}
+	res.re = self.re + other.re
+	res.im = self.im + other.im
+	return res
+}
+
+func (self *ComplexNumber) sub(other ComplexNumber) ComplexNumber {
+	var res = ComplexNumber{}
+	res.re = self.re - other.re
+	res.im = self.im - other.im
+	return res
+}
+
+func (self *ComplexNumber) mul(other ComplexNumber) ComplexNumber {
+	var res = ComplexNumber{}
+	res.re = self.re*other.re - self.im*other.im
+	res.im = self.re*other.im + self.im*other.re
+	return res
+}
+
+func (self *ComplexNumber) mulByFactor(factor float64) ComplexNumber {
+	var res = ComplexNumber{}
+	res.re = self.re*factor
+	res.im = self.im*factor
+	return res
+}
+
+func (self *ComplexNumber) divByFactor(factor float64) ComplexNumber {
+	var res = ComplexNumber{}
+	res.re = self.re / factor
+	res.im = self.im / factor
+	return res
+}
+
+func (self *ComplexNumber) div(other ComplexNumber) ComplexNumber {
+	var factor = math.Pow(other.re , 2) + math.Pow(other.im , 2)
+	var temp = ComplexNumber{other.re , -other.im}
+	var res = self.mul(temp)
+	res = res.divByFactor(factor)
+	return res
+}
+
+func (self *ComplexNumber) toString() string {
+	return fmt.Sprintf("%.2f + i*(%.2f)", self.re , self.im)
+}
+
+
+
+func (self *StructExample) test_ComplexNumber() {
+	var cn1 , cn2 ComplexNumber
+	cn1 = ComplexNumber{3, 3}
+	cn2 = ComplexNumber{2, 2}
+	var cnAdd = cn1.add(cn2)
+	var cnSub = cn1.sub(cn2)
+	var cnMul = cn1.mul(cn2)
+	var cnDiv = cn1.div(cn2)
+	fmt.Println("<<ComplexNumber Example>>")
+	fmt.Println("cn1 = ", cn1.toString())
+	fmt.Println("cn2 = ", cn2.toString())
+	fmt.Println("cn1 + cn2 = ", cnAdd.toString())
+	fmt.Println("cn1 - cn2 = ", cnSub.toString())
+	fmt.Println("cn1 * cn2 = ", cnMul.toString())
+	fmt.Println("cn1 / cn2 = ", cnDiv.toString())
+}
+
+

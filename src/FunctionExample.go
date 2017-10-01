@@ -111,3 +111,34 @@ func swapByRef(x *int, y *int) {
 	*x = *y
 	*y = temp
 }
+
+
+//recursion
+func (self *FunctionExample) factorial(number int64) int64 {
+	if number <= 1 {
+		return 1
+	} else {
+		return number*self.factorial(number-1)
+	}
+}
+
+func (self *FunctionExample) fibonacci(index int64) int64 {
+	if index == 0 || index == 1 {
+		return index
+	}
+	return self.fibonacci(index-1) + self.fibonacci(index-2)
+}
+
+func (self *FunctionExample) test_Recursion() {
+	var fact_10 = self.factorial(10)
+	var fact_5 = self.factorial(5)
+	fmt.Println("<<Recursion Examples>>")
+	fmt.Printf("10! = %d\n", fact_10)
+	fmt.Printf("5! = %d\n", fact_5)
+	fmt.Println()
+	var i int64
+	for i = 0 ; i < 15; i++  {
+		fmt.Printf("%d ; ", self.fibonacci(i))
+	}
+	fmt.Println()
+}
